@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ADZERO</title>
+<style>
+*{box-sizing:border-box}body{margin:0;width:350px;max-height:700px;overflow-y:auto;padding:19px;font:14px Inter,Segoe UI,Arial,sans-serif;color:#f4f5f7;background:linear-gradient(145deg,#111a23,#1b2732 65%,#101820)}
+header{display:flex;align-items:center;gap:12px;margin-bottom:18px}.mark{width:46px;height:46px;border-radius:14px;background:linear-gradient(145deg,#dfc994,#9b7b49);display:grid;place-items:center;color:#18232c;font-size:24px;font-weight:900;box-shadow:0 7px 20px #0005}
+h1{font-size:20px;letter-spacing:2.6px;margin:0;font-weight:800}.tag{font-size:10px;letter-spacing:1.5px;color:#c5a66c;margin-top:4px;text-transform:uppercase}
+.panel{background:#202d38;border:1px solid #35434f;border-radius:15px;padding:15px;margin-bottom:11px;box-shadow:0 8px 22px #0002}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.label{font-weight:650;font-size:13px}.muted{font-size:11px;color:#aab5bf;line-height:1.5;margin-top:5px}
+.status{display:flex;align-items:center;gap:7px;color:#c5cdd4;font-size:11px;margin-top:5px}.dot{width:7px;height:7px;border-radius:50%;background:#b8894b}.dot.on{background:#6ed7a2;box-shadow:0 0 10px #6ed7a277}
+.switch{width:46px;height:26px;border:0;border-radius:20px;background:#52616e;position:relative;cursor:pointer}.switch:after{content:"";position:absolute;width:20px;height:20px;top:3px;left:3px;border-radius:50%;background:white;transition:.18s}.switch.on{background:#b99a63}.switch.on:after{left:23px}
+.eyebrow{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:#c5a66c;margin-bottom:6px}.stat{font-size:29px;font-weight:750;letter-spacing:-1px;margin-top:3px}.site{font-size:12px;overflow-wrap:anywhere;color:#e2e7eb;margin-top:7px}
+button.action{width:100%;border:1px solid #566472;background:#293844;border-radius:10px;padding:11px;color:#f5f6f7;font-size:12px;font-weight:650;cursor:pointer}button.action:hover{background:#354754}
+button.primary{background:linear-gradient(110deg,#d2bb8a,#a98750);border:0;color:#17212a}button:disabled{opacity:.4;cursor:default}
+select{background:#293844;color:#f5f6f7;border:1px solid #566472;border-radius:8px;padding:7px;font-size:11px}
+.footer{font-size:10px;color:#83919e;line-height:1.5;margin:12px 2px 0}
+.filter-form{display:grid;grid-template-columns:1fr 105px;gap:7px;margin-top:10px}.filter-form input,.filter-form select{min-width:0;width:100%;background:#293844;color:#f5f6f7;border:1px solid #566472;border-radius:8px;padding:9px;font-size:11px}.filter-form input{grid-column:1/-1}.filter-list{display:grid;gap:7px;margin-top:11px;max-height:180px;overflow:auto}.filter-item{padding:9px;border:1px solid #3b4a56;border-radius:9px;background:#1a2630}.filter-target{font-size:11px;overflow-wrap:anywhere;color:#f0f2f4}.filter-meta{font-size:10px;color:#aab5bf;margin-top:4px}.filter-actions{display:flex;gap:5px;margin-top:7px}.filter-actions button{border:1px solid #566472;background:#293844;color:#f5f6f7;border-radius:7px;padding:5px 8px;font-size:10px;cursor:pointer}.filter-actions button.danger{color:#e6a3a3}.filter-message{font-size:10px;line-height:1.4;color:#d9bd88;margin-top:8px;min-height:14px}.tool-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.rule-list{display:grid;gap:7px;margin-top:10px;max-height:140px;overflow:auto}.small-action{border:1px solid #566472;background:#293844;color:#f5f6f7;border-radius:7px;padding:6px 8px;font-size:10px;cursor:pointer}.rule-row{padding:8px;border:1px solid #3b4a56;border-radius:8px;background:#1a2630}.rule-row .filter-target{font-size:10px}.rule-row .filter-actions{margin-top:6px}
+</style></head><body>
+<header><div class="mark">A</div><div><h1>ADZERO</h1><div class="tag">Browse without noise</div></div></header>
+<section class="panel"><div class="row"><div><div class="label" id="protectionLabel">Защита браузера</div><div class="status"><span class="dot" id="dot"></span><span id="state">Проверка...</span></div></div><button class="switch" id="toggle" aria-label="Protection toggle"></button></div><div class="muted" id="desc">Блокировка известных рекламных сетей, трекеров и распознанных рекламных блоков.</div></section>
+<section class="panel"><div class="eyebrow" id="statsTitle">Статистика</div><div class="label" id="hiddenLabel">Скрыто рекламных элементов*</div><div class="stat" id="count">0</div><div class="muted" id="statsNote">Счётчик распознанных элементов страницы, не всех сетевых запросов.</div></section>
+<section class="panel"><div class="eyebrow" id="siteTitle">Настройки сайта</div><div class="label" id="currentSiteLabel">Текущий сайт</div><div class="site" id="host">Определение…</div><div style="height:12px"></div><button class="action" id="siteToggle">Исключить этот сайт</button></section>
+<section class="panel">
+<div class="eyebrow" id="filtersTitle">My Filters</div>
+<div class="label" id="filtersDesc">Пользовательские сетевые правила</div>
+<div class="muted" id="filtersHint">Домен или полный HTTP(S)-адрес ресурса. Разрешение действует на сетевой запрос, а не отключает защиту сайта.</div>
+<div class="filter-form"><input id="filterTarget" type="text" autocomplete="off" spellcheck="false" placeholder="example.com или https://example.com/ad.js"><select id="filterAction"><option value="block">Блокировать</option><option value="allow">Разрешить</option></select><button class="action primary" id="addFilter" type="button">Добавить правило</button></div>
+<div class="filter-message" id="filterMessage" aria-live="polite"></div>
+<div class="filter-list" id="filterList"></div>
+</section>
+<section class="panel">
+<div class="eyebrow" id="pickerTitle">ELEMENT PICKER</div>
+<div class="label" id="pickerDesc">Выбери элемент страницы, чтобы скрыть его на этом сайте</div>
+<div class="tool-actions"><button class="action primary" id="startPicker" type="button">Выбрать элемент</button><button class="action" id="clearElementRules" type="button">Очистить правила</button></div>
+<div class="rule-list" id="elementRuleList"></div>
+</section>
+<section class="panel">
+<div class="eyebrow" id="pauseTitle">SITE PROTECTION</div>
+<div class="label" id="pauseDesc">Временно приостановить защиту на текущем сайте</div>
+<div class="tool-actions"><button class="action" id="pause5" type="button">5 минут</button><button class="action" id="pause30" type="button">30 минут</button></div>
+<div class="muted" id="pauseStatus"></div>
+</section>
+<section class="panel"><div class="eyebrow" id="packsTitle">FILTER PACKS</div><div class="label" id="packsDesc">Управление встроенными наборами фильтров</div><div class="muted" id="packsHint">Наборы используют локальные правила ADZERO. Отключение набора уменьшает охват блокировки.</div><div class="row" style="margin-top:10px"><span class="label" id="adsPackLabel">Рекламные сети</span><input type="checkbox" id="adsPack" checked></div><div class="row" style="margin-top:8px"><span class="label" id="trackersPackLabel">Трекеры и аналитика</span><input type="checkbox" id="trackersPack" checked></div><button class="action" id="openStats" style="margin-top:10px">Открыть статистику</button></section>
+<section class="panel"><div class="eyebrow" id="historyTitle">Block History</div><div class="muted" id="historyHint">Локальная история сетевых блокировок, если браузер предоставляет события DNR.</div><button class="action" id="openHistory" type="button">Открыть историю</button></section>
+<section class="panel"><div class="eyebrow" id="modeTitle">PROTECTION MODE</div><div class="label" id="modeLabel">Режим защиты</div><div class="muted" id="modeDesc">Standard — базовая фильтрация · Strict — также блокирует набор трекеров · Custom — ручное управление наборами.</div><select id="protectionMode" style="width:100%;margin-top:10px"><option value="standard">Standard</option><option value="strict">Strict</option><option value="custom">Custom</option></select><div class="muted" id="modeWarning"></div></section>
+<section class="panel"><div class="eyebrow" id="settingsTitle">SETTINGS & REPORT</div><button class="action" id="openSettings">Импорт / экспорт и отчёт о проблеме сайта</button></section>
+<div class="row" style="margin-bottom:10px"><span class="muted" id="languageLabel">Язык интерфейса</span><select id="language"><option value="ru">Русский</option><option value="en">English</option></select></div>
+<button class="action primary" id="reset">Сбросить статистику</button>
+<p class="footer" id="footer">ADZERO · Некоторые объявления могут оставаться, особенно встроенная видеореклама. Счётчик отражает распознанные элементы, а не все сетевые блокировки.</p>
+<script src="popup.js"></script></body></html>
