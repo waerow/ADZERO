@@ -3,7 +3,7 @@
 
   // YouTube-only helper: click the native Skip Ad control once it becomes
   // available. It never blocks media URLs or changes normal video playback.
-  if (!/(^|\\.)youtube\\.com$/i.test(location.hostname)) return;
+  if (!/(^|\.)youtube\.com$/i.test(location.hostname)) return;
 
   const SKIP_SELECTORS = [
     ".ytp-ad-skip-button:not([disabled])",
