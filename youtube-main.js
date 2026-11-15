@@ -31,7 +31,7 @@
     "videoMastheadAdPrimaryVideoRenderer"
   ]);
 
-  const AD_MARKERS = /"(?:adPlacements|adSlots|playerAds|adBreakHeartbeatParams|adSlotRenderer|promotedSparklesWebRenderer|promotedVideoRenderer)"/;
+  const AD_MARKERS = /"(?:adPlacements|adSlots|playerAds|adBreakHeartbeatParams|adSlotRenderer|adClientParams|promotedSparklesWebRenderer|promotedSparklesTextSearchRenderer|promotedVideoRenderer|compactPromotedVideoRenderer|displayAdRenderer|inFeedAdLayoutRenderer|companionAdRenderer|companionSlotRenderer)"/;
   const RESPONSE_KEYS = new Set(["ytInitialPlayerResponse", "ytInitialData", "playerResponse", "ytInitialReelWatchSequenceResponse"]);
 
   function isAdEntry(value) {
@@ -64,7 +64,9 @@
       // YouTube sometimes marks promoted feed/reel entries on the entry itself.
       const child = input[key];
       if (child && typeof child === "object" && isAdEntry(child)) continue;
-      output[key] = cleanData(child, visited);
+      output[key] = (key === "player_response" || key === "playerResponse") && typeof child === "string"
+        ? cleanJsonText(child)
+        : cleanData(child, visited);
     }
     return output;
   }
