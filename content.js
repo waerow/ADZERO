@@ -6,7 +6,14 @@
     '[class*="taboola"]', '[id*="taboola"]', '[class*="outbrain"]', '[id*="outbrain"]',
     'iframe[src*="doubleclick.net"]', 'iframe[src*="googlesyndication.com"]',
     'iframe[src*="adnxs.com"]', '[aria-label="Advertisement"]',
-    '[aria-label="Sponsored"]', '[data-testid*="ad-"]'
+    '[aria-label="Sponsored"]', '[data-testid*="ad-"]',
+    // YouTube ad containers and sponsored placements (cosmetic fallback).
+    '#player-ads', '.video-ads', '.ytp-ad-module',
+    'ytd-ad-slot-renderer', 'ytd-in-feed-ad-layout-renderer',
+    'ytd-display-ad-renderer', 'ytd-promoted-sparkles-web-renderer',
+    'ytd-promoted-sparkles-text-search-renderer', 'ytd-banner-promo-renderer',
+    'ytd-action-companion-ad-renderer', 'ytm-ad-slot-renderer',
+    'ytm-companion-ad-renderer', 'ytm-promoted-sparkles-web-renderer'
   ];
   const selectorText = selectors.join(",");
   const css = selectorText +
