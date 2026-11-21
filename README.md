@@ -2,34 +2,37 @@
 
 **A lightweight Chromium-based ad and tracker filtering extension.**
 
-ADZERO combines network request filtering with cosmetic page-element hiding to help reduce advertising and tracking while browsing.
+ADZERO combines Manifest V3 network request filtering, cosmetic filtering and YouTube-specific response filtering.
 
-> **Current release:** 3.1.0  
+> **Development version:** 3.2.0 (experimental)  
 > **Manifest:** Version 3 (MV3)  
 > **Languages:** English and Russian
 
 ## Features
 
 - **Global protection** — enable or disable filtering.
-- **My Filters** — create, edit, enable, disable and remove custom network block/allow rules for domains and HTTP(S) URL prefixes.
-- **Block History** — review available browser-reported rule-match events, search and filter records, inspect rule sources, and allow or re-block URLs.
+- **My Filters** — local custom network block/allow rules for domains and HTTP(S) URL prefixes.
+- **Block History** — available browser-reported rule-match events, search, filters and URL allow/re-block actions.
 - **Element Picker** — select page elements and save CSS rules scoped to the current hostname.
-- **Site Protection** — pause protection for 5 or 30 minutes with automatic restoration; permanent site exceptions are separate.
-- **Statistics** — view available network rule-match events for 24 hours, 7 days and 30 days, separately from the DOM hidden-element counter.
-- **Filter Packs** — manage built-in ad and tracker rule sets.
+- **Site Protection** — temporary pause with automatic restoration and permanent site exceptions.
+- **Statistics** — available DNR match events for 24 hours, 7 days and 30 days, separately from the DOM hidden-element counter.
+- **Filter Packs** — manage built-in ad and tracker rules.
 - **Protection Modes** — Standard, Strict and Custom.
 - **Import / Export** — transfer supported settings and user-created rules using JSON.
-- **Website Problem Report** — generate a diagnostic summary locally for the user to review and copy.
+- **Website Problem Report** — generate a diagnostic summary locally for review and copying.
 - **Bilingual interface** — English and Russian.
+- **YouTube filtering layer** — early MAIN-world hooks, targeted Innertube JSON pruning, fetch/XHR response filtering and cosmetic selectors.
 
 ## Install in Microsoft Edge
 
-1. Download the ADZERO 3.1.0 ZIP package from the repository's **Releases** section (when a release asset is available).
-2. Extract the ZIP archive to a folder.
+1. Download the ZIP for the `release-3.2.0-youtube-hardening` branch from GitHub.
+2. Extract the archive to a folder.
 3. Open `edge://extensions`.
 4. Turn on **Developer mode**.
 5. Select **Load unpacked** and choose the extracted ADZERO folder containing `manifest.json`.
-6. Refresh open tabs.
+6. Refresh YouTube tabs.
+
+This is an experimental development build, not a stable release. Keep another browser profile or a copy of your previous build available for rollback.
 
 ## Install in other Chromium-based browsers
 
@@ -37,7 +40,7 @@ The extension uses Manifest V3. In a compatible Chromium-based browser, open its
 
 ## Privacy
 
-The 3.1.0 build stores extension settings, custom filters, CSS rules and available blocking-event history in the browser's local extension storage. The build does not implement ADZERO telemetry or automatic upload of browsing history to an ADZERO server. The Website Problem Report is generated locally and is not sent automatically.
+The extension stores settings, custom filters, CSS rules and available blocking-event history in the browser's local extension storage. This build does not implement ADZERO telemetry or automatic upload of browsing history to an ADZERO server. The Website Problem Report is generated locally and is not sent automatically.
 
 Block History is based only on events exposed by the browser's `declarativeNetRequestFeedback` API. It is not a complete record of all network requests or browsing activity.
 
@@ -50,13 +53,18 @@ The manifest requests:
 - `tabs` — support active-tab and site-specific controls.
 - `declarativeNetRequestFeedback` — access browser-exposed rule-match events for history and statistics.
 - `alarms` — restore protection after a timed pause.
-- HTTP and HTTPS host access — run the content script for cosmetic filtering and Element Picker functionality on websites.
+- HTTP and HTTPS host access — run content scripts for cosmetic filtering and Element Picker functionality.
 
-The package requests access to all HTTP and HTTPS websites. This broad host access is intentional in the current build for site-wide filtering and page-element features; it should be reviewed before any browser-store submission.
+The package requests access to all HTTP and HTTPS websites. This broad host access is intentional for site-wide filtering and should be reviewed before any browser-store submission.
+
+## YouTube filtering design
+
+The YouTube layer targets known ad metadata in selected Innertube API responses and initial page data. It preserves media URLs and streaming data rather than broadly blocking `googlevideo.com`. The implementation is best-effort: YouTube can change response formats, and server-side or newly introduced ad delivery paths may bypass it.
 
 ## Known limitations
 
-- ADZERO does not guarantee that every ad or tracker will be blocked. First-party ads, ads integrated into page content, new ad domains and some video ads (including in-stream and mid-roll ads) may remain.
+- No extension can guarantee removal of every ad. First-party, server-integrated and newly introduced ad formats may remain.
+- YouTube in-stream and mid-roll ad handling requires live testing and may change as YouTube changes its player.
 - Block History and network statistics depend on browser-provided DNR feedback events and may be incomplete.
 - The hidden-element counter reports recognized DOM elements, not blocked network requests.
 - Popup suppression is best-effort.
@@ -65,11 +73,7 @@ The package requests access to all HTTP and HTTPS websites. This broad host acce
 
 ## Project status
 
-Version 3.1.0 has been user-tested against the main scenarios in Microsoft Edge and Google Chrome. This does not constitute an independent security audit, exhaustive compatibility testing or a guarantee for every website.
-
-## Repository contents
-
-The extension package includes the Manifest V3 service worker, popup and settings interfaces, content script, icons and JSON rule lists. See [CHANGELOG.md](CHANGELOG.md) for version 3.1.0 notes.
+Version 3.2.0 is an experimental development build. Static and synthetic checks do not replace real-world testing in Microsoft Edge. It has not undergone an independent security audit or exhaustive compatibility testing.
 
 ## License
 
