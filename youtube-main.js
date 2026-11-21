@@ -12,6 +12,11 @@
     "adSlots",
     "playerAds",
     "adBreakHeartbeatParams",
+    "adBreakParams",
+    "adPlacementRenderer",
+    "adBadgeRenderer",
+    "adInfoRenderer",
+    "adPreviewRenderer",
     "adSlotRenderer",
     "adSlotMetadata",
     "displayAdRenderer",
@@ -28,10 +33,13 @@
     "companionSlotRenderer",
     "videoMastheadAdRenderer",
     "videoMastheadAdV3Renderer",
-    "videoMastheadAdPrimaryVideoRenderer"
+    "videoMastheadAdPrimaryVideoRenderer",
+    "adPodInfo",
+    "adServingData",
+    "adSafetyReason"
   ]);
 
-  const AD_MARKERS = /"(?:adPlacements|adSlots|playerAds|adBreakHeartbeatParams|adSlotRenderer|adClientParams|promotedSparklesWebRenderer|promotedSparklesTextSearchRenderer|promotedVideoRenderer|compactPromotedVideoRenderer|displayAdRenderer|inFeedAdLayoutRenderer|companionAdRenderer|companionSlotRenderer)"/;
+  const AD_MARKERS = /"(?:adPlacements|adSlots|playerAds|adBreakHeartbeatParams|adBreakParams|adPlacementRenderer|adBadgeRenderer|adInfoRenderer|adPreviewRenderer|adSlotRenderer|adClientParams|promotedSparklesWebRenderer|promotedSparklesTextSearchRenderer|promotedVideoRenderer|compactPromotedVideoRenderer|displayAdRenderer|inFeedAdLayoutRenderer|companionAdRenderer|companionSlotRenderer|adPodInfo|adServingData|adSafetyReason)"/;
   const RESPONSE_KEYS = new Set(["ytInitialPlayerResponse", "ytInitialData", "playerResponse", "ytInitialReelWatchSequenceResponse"]);
 
   function isAdEntry(value) {
