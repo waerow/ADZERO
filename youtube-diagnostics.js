@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  if (!/(^|\\.)youtube\\.com$/i.test(location.hostname)) return;
+  if (!/(^|\.)youtube\.com$/i.test(location.hostname)) return;
 
   // Local-only, transition-based diagnostics. No URLs, titles, account data or
   // page text are collected; only coarse ad-surface state and timestamps.
