@@ -2,6 +2,9 @@
 
 ## 3.2.0 — Experimental YouTube hardening
 
+### Fixed
+- Synchronized YouTube JSON text markers with all ad metadata keys removed by the pruning layer, so payloads containing the previously missed renderer keys also enter cleanup.
+
 ### Changed
 - Bumped development version to 3.2.0.
 - Expanded the targeted YouTube ad-metadata pruning keys and JSON marker detection for additional known renderer and ad-pod metadata.
