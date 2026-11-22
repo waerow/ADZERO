@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  if (!/(^|\\.)youtube\\.com$/i.test(location.hostname)) return;
+  if (!/(^|\.)youtube\.com$/i.test(location.hostname)) return;
 
   // Best-effort handling for ads that expose YouTube's native Skip control.
   // This does not claim to remove non-skippable or server-stitched ad streams.
