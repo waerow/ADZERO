@@ -4,7 +4,7 @@
 
 ADZERO combines Manifest V3 network request filtering, cosmetic filtering and YouTube-specific response filtering.
 
-> **Development version:** 3.2.0 (experimental)  
+> **Development version:** 3.2.1 (experimental)  
 > **Manifest:** Version 3 (MV3)  
 > **Languages:** English and Russian
 
@@ -21,11 +21,12 @@ ADZERO combines Manifest V3 network request filtering, cosmetic filtering and Yo
 - **Import / Export** — transfer supported settings and user-created rules using JSON.
 - **Website Problem Report** — generate a diagnostic summary locally for review and copying.
 - **Bilingual interface** — English and Russian.
-- **YouTube filtering layer** — early MAIN-world hooks, targeted Innertube JSON pruning, fetch/XHR response filtering and cosmetic selectors.
+- **YouTube filtering layer** — early MAIN-world hooks, targeted Innertube JSON pruning, fetch/XHR response filtering, native skip-button handling and cosmetic selectors.
+- **YouTube diagnostics** — optional local counters for observed player-ad state, overlays, feed placements and skip controls. Diagnostics do not claim these events were blocked and do not store page URLs or titles.
 
 ## Install in Microsoft Edge
 
-1. Download the ZIP for the `release-3.2.0-youtube-hardening` branch from GitHub.
+1. Download the ZIP for the `youtube-recovery-3.2.1` branch from GitHub.
 2. Extract the archive to a folder.
 3. Open `edge://extensions`.
 4. Turn on **Developer mode**.
@@ -64,7 +65,7 @@ The YouTube layer targets known ad metadata in selected Innertube API responses 
 ## Known limitations
 
 - No extension can guarantee removal of every ad. First-party, server-integrated and newly introduced ad formats may remain.
-- YouTube in-stream and mid-roll ad handling requires live testing and may change as YouTube changes its player.
+- YouTube in-stream and mid-roll ad handling remains best-effort. The diagnostics panel records observed page states; it does not prove an ad was blocked or identify every network delivery path.
 - Block History and network statistics depend on browser-provided DNR feedback events and may be incomplete.
 - The hidden-element counter reports recognized DOM elements, not blocked network requests.
 - Popup suppression is best-effort.
@@ -73,7 +74,7 @@ The YouTube layer targets known ad metadata in selected Innertube API responses 
 
 ## Project status
 
-Version 3.2.0 is an experimental development build. Static and synthetic checks do not replace real-world testing in Microsoft Edge. It has not undergone an independent security audit or exhaustive compatibility testing.
+Version 3.2.1 is an experimental recovery/diagnostics build. It has not been live-validated against current YouTube ad delivery in Edge. Static and synthetic checks do not replace real-world testing in Microsoft Edge. It has not undergone an independent security audit or exhaustive compatibility testing.
 
 ## License
 

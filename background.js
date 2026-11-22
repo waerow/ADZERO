@@ -217,7 +217,34 @@ chrome.runtime.onStartup.addListener(async () => {
   await syncUserFilters();
 });
 
+async function recordYoutubeDiagnostic(message) {
+  const allowedKinds = new Set(["player", "overlay", "feed", "skip"]);
+  if (!message || !allowedKinds.has(message.kind) || message.active !== true) return;
+  const timestamp = Number.isFinite(message.timestamp) ? Math.min(Date.now(), message.timestamp) : Date.now();
+  try {
+    const { youtubeDiagnostics = { counts: {}, events: [] } } = await chrome.storage.local.get({ youtubeDiagnostics: { counts: {}, events: [] } });
+    const state = youtubeDiagnostics && typeof youtubeDiagnostics === "object" ? youtubeDiagnostics : { counts: {}, events: [] };
+    const counts = state.counts && typeof state.counts === "object" ? state.counts : {};
+    const events = Array.isArray(state.events) ? state.events : [];
+    counts[message.kind] = Math.min(1000000, (Number(counts[message.kind]) || 0) + 1);
+    events.unshift({ kind: message.kind, timestamp });
+    await chrome.storage.local.set({
+      youtubeDiagnostics: {
+        counts,
+        events: events.filter(item => item && Number.isFinite(item.timestamp)).slice(0, 100),
+        updatedAt: Date.now()
+      }
+    });
+  } catch (error) {
+    console.warn("ADZERO YouTube diagnostics unavailable:", error);
+  }
+}
+
 chrome.runtime.onMessage.addListener(message => {
+  if (message?.type === "youtube-diagnostic") {
+    recordYoutubeDiagnostic(message);
+    return;
+  }
   if (message?.type !== "hidden-count" ||
       !Number.isSafeInteger(message.count) || message.count <= 0) return;
 

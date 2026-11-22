@@ -1,5 +1,21 @@
 # ADZERO — Changelog
 
+## 3.2.1 — Experimental YouTube recovery and diagnostics
+
+### Changed
+- Improved native YouTube skip-control detection with mutation-driven checks, a shorter fallback poll interval and SPA navigation handling.
+- Made the YouTube skip helper respect ADZERO's global protection switch, site exceptions and temporary site pauses.
+- Added local YouTube ad-surface diagnostics for player ad state, overlays, feed placements and visible skip controls.
+- Diagnostics store only coarse event types and timestamps locally; they do not store video titles, page URLs or account data.
+- Added a popup panel that displays observed diagnostic events and lets the user clear them.
+- Kept the existing targeted Innertube response filtering and avoided broad blocking of `googlevideo.com`.
+- No new extension permissions were added.
+
+### Important limitations
+- Native skip handling only acts when YouTube exposes a usable skip control. It does not remove non-skippable or server-stitched ads.
+- Diagnostic counts represent observed state transitions, not blocked-ad counts.
+- This is an experimental build. Real Edge testing is required for pre-roll, mid-roll, overlays, feed placements, playback, audio, captions and SPA navigation.
+
 ## 3.2.0 — Experimental YouTube hardening
 
 ### Fixed
@@ -39,7 +55,7 @@
 - Kept user data local; no telemetry or automatic browsing-history upload is implemented.
 
 ### Known limitations
-- Block History and network statistics depend on browser DNR feedback events and are not a complete network log.
+- Block History and network statistics depend on browser-provided DNR feedback events and are not a complete network log.
 - The cosmetic counter counts recognized DOM elements, not network requests.
 - Complete ad removal and YouTube in-stream/mid-roll blocking are not guaranteed.
 - Popup suppression is best-effort.
