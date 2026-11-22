@@ -54,8 +54,7 @@
       ],
       "js": [
         "content.js",
-        "youtube.js",
-        "youtube-diagnostics.js"
+        "youtube.js"
       ],
       "run_at": "document_start"
     },
@@ -69,6 +68,16 @@
       ],
       "run_at": "document_start",
       "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://m.youtube.com/*"
+      ],
+      "js": [
+        "youtube-diagnostics.js"
+      ],
+      "run_at": "document_start"
     }
   ]
 }
