@@ -18,6 +18,15 @@ select{background:#293844;color:#f5f6f7;border:1px solid #566472;border-radius:8
 <header><div class="mark">A</div><div><h1>ADZERO</h1><div class="tag">Browse without noise</div></div></header>
 <section class="panel"><div class="row"><div><div class="label" id="protectionLabel">Защита браузера</div><div class="status"><span class="dot" id="dot"></span><span id="state">Проверка...</span></div></div><button class="switch" id="toggle" aria-label="Protection toggle"></button></div><div class="muted" id="desc">Блокировка известных рекламных сетей, трекеров и распознанных рекламных блоков.</div></section>
 <section class="panel"><div class="eyebrow" id="statsTitle">Статистика</div><div class="label" id="hiddenLabel">Скрыто рекламных элементов*</div><div class="stat" id="count">0</div><div class="muted" id="statsNote">Счётчик распознанных элементов страницы, не всех сетевых запросов.</div></section>
+<section class="panel">
+<div class="eyebrow" id="ytDiagTitle">YOUTUBE DIAGNOSTICS</div>
+<div class="label" id="ytDiagDesc">Наблюдаемые рекламные поверхности — это не счётчик блокировок.</div>
+<div class="row" style="margin-top:10px"><span class="muted" id="ytPlayerLabel">Видеоплеер</span><strong id="ytPlayerCount">0</strong></div>
+<div class="row" style="margin-top:6px"><span class="muted" id="ytOverlayLabel">Оверлеи</span><strong id="ytOverlayCount">0</strong></div>
+<div class="row" style="margin-top:6px"><span class="muted" id="ytFeedLabel">Лента и рекомендации</span><strong id="ytFeedCount">0</strong></div>
+<div class="row" style="margin-top:6px"><span class="muted" id="ytSkipLabel">Кнопки пропуска</span><strong id="ytSkipCount">0</strong></div>
+<button class="action" id="ytDiagReset" type="button" style="margin-top:10px">Очистить диагностику</button>
+</section>
 <section class="panel"><div class="eyebrow" id="siteTitle">Настройки сайта</div><div class="label" id="currentSiteLabel">Текущий сайт</div><div class="site" id="host">Определение…</div><div style="height:12px"></div><button class="action" id="siteToggle">Исключить этот сайт</button></section>
 <section class="panel">
 <div class="eyebrow" id="filtersTitle">My Filters</div>
