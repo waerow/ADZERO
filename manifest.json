@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "ADZERO",
   "short_name": "ADZERO",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Premium ad and tracker protection for a quieter web.",
   "permissions": [
     "declarativeNetRequest",
@@ -53,9 +53,21 @@
         "https://*/*"
       ],
       "js": [
-        "content.js"
+        "content.js",
+        "youtube.js"
       ],
       "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://m.youtube.com/*"
+      ],
+      "js": [
+        "youtube-main.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
     }
   ]
 }
