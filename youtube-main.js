@@ -39,7 +39,7 @@
     "adSafetyReason"
   ]);
 
-  const AD_MARKERS = /"(?:adPlacements|adSlots|playerAds|adBreakHeartbeatParams|adBreakParams|adPlacementRenderer|adBadgeRenderer|adInfoRenderer|adPreviewRenderer|adSlotRenderer|adClientParams|promotedSparklesWebRenderer|promotedSparklesTextSearchRenderer|promotedVideoRenderer|compactPromotedVideoRenderer|displayAdRenderer|inFeedAdLayoutRenderer|companionAdRenderer|companionSlotRenderer|adPodInfo|adServingData|adSafetyReason)"/;
+  // Keep this marker list in sync with AD_KEYS: every key removed by cleanData\n  // must also trigger JSON text parsing in cleanJsonText and the response hooks.\n  const AD_MARKERS = /"(?:adPlacements|adSlots|playerAds|adBreakHeartbeatParams|adBreakParams|adPlacementRenderer|adBadgeRenderer|adInfoRenderer|adPreviewRenderer|adSlotRenderer|adSlotMetadata|displayAdRenderer|inFeedAdLayoutRenderer|promotedSparklesWebRenderer|promotedSparklesTextSearchRenderer|promotedVideoRenderer|compactPromotedVideoRenderer|searchPyvRenderer|bannerPromoRenderer|statementBannerRenderer|actionCompanionAdRenderer|companionAdRenderer|companionSlotRenderer|videoMastheadAdRenderer|videoMastheadAdV3Renderer|videoMastheadAdPrimaryVideoRenderer|adPodInfo|adServingData|adSafetyReason|adClientParams)"/;
   const RESPONSE_KEYS = new Set(["ytInitialPlayerResponse", "ytInitialData", "playerResponse", "ytInitialReelWatchSequenceResponse"]);
 
   function isAdEntry(value) {
